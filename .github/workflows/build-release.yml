@@ -38,7 +38,7 @@ jobs:
 
       - name: Build executable
         run: >-
-          pyinstaller --noconfirm --clean --onefile --name Audioyt
+          pyinstaller --noconfirm --clean --onefile --console --name Audioyt
           --add-data "templates${{ runner.os == 'Windows' && ';' || ':' }}templates"
           --add-data "static${{ runner.os == 'Windows' && ';' || ':' }}static"
           --collect-all imageio_ffmpeg app.py

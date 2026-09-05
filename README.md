@@ -6,7 +6,7 @@ Lokalna aplikacja Flask do pobierania audio z pojedynczego filmu YouTube i konwe
 
 Najwygodniejsza wersja to pojedynczy plik aplikacji. Odbiorca nie musi instalowac Pythona, bibliotek ani FFmpeg.
 
-Na Windows uruchom `buduj.bat`, a na macOS/Linux uruchom `buduj.sh`. Gotowy plik pojawi sie w folderze `dist`. Wyslij odbiorcy tylko plik z tego folderu. Po uruchomieniu aplikacja sama otworzy przegladarke.
+Na Windows uruchom `buduj.bat`, a na macOS/Linux uruchom `buduj.sh`. Gotowy plik pojawi sie w folderze `dist`. Wyslij odbiorcy tylko plik z tego folderu. Po uruchomieniu aplikacja sama otworzy przegladarke i uruchomi wlasne okno terminala w tle. Terminal zamknie sie automatycznie, gdy aplikacja zostanie zakonczona.
 
 PyInstaller buduje aplikacje dla systemu, na ktorym jest uruchomiony. Wersje Windows, macOS i Linux trzeba zbudowac osobno na odpowiednich systemach. Na macOS rezultat moze byc pojedynczym plikiem `Audioyt` albo aplikacja `.app`, zależnie od sposobu dystrybucji.
 

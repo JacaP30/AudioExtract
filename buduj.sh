@@ -21,7 +21,7 @@ echo "Instalowanie bibliotek aplikacji i PyInstaller..."
 rm -rf build dist Audioyt.spec
 
 echo "Budowanie Audioyt..."
-./.venv/bin/pyinstaller --noconfirm --clean --onefile --name Audioyt \
+./.venv/bin/pyinstaller --noconfirm --clean --onefile --console --name Audioyt \
   --add-data "templates:templates" \
   --add-data "static:static" \
   --collect-all imageio_ffmpeg app.py

@@ -22,7 +22,7 @@ if exist dist rmdir /s /q dist
 if exist Audioyt.spec del /q Audioyt.spec
 
 echo Budowanie Audioyt.exe...
-".venv\Scripts\pyinstaller.exe" --noconfirm --clean --onefile --noconsole --name Audioyt --add-data "templates;templates" --add-data "static;static" --collect-all imageio_ffmpeg app.py
+".venv\Scripts\pyinstaller.exe" --noconfirm --clean --onefile --console --name Audioyt --add-data "templates;templates" --add-data "static;static" --collect-all imageio_ffmpeg app.py
 if errorlevel 1 goto :error
 
 echo.
