@@ -1,0 +1,54 @@
+name: Build Audioyt
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            artifact: Audioyt-windows
+            executable: dist/Audioyt.exe
+          - os: macos-latest
+            artifact: Audioyt-macos
+            executable: dist/Audioyt
+          - os: ubuntu-latest
+            artifact: Audioyt-linux
+            executable: dist/Audioyt
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip && python -m pip install -r requirements.txt pyinstaller
+
+      - name: Build executable
+        run: >-
+          pyinstaller --noconfirm --clean --onefile --name Audioyt
+          --add-data "templates${{ runner.os == 'Windows' && ';' || ':' }}templates"
+          --add-data "static${{ runner.os == 'Windows' && ';' || ':' }}static"
+          --collect-all imageio_ffmpeg app.py
+
+      - name: Make Linux/macOS executable runnable
+        if: runner.os != 'Windows'
+        run: chmod +x dist/Audioyt
+
+      - name: Upload executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.executable }}

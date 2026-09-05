@@ -2,14 +2,24 @@ from pathlib import Path
 import re
 import shutil
 import tempfile
+import threading
+import webbrowser
 
 from flask import Flask, after_this_request, jsonify, render_template, request, send_file
+import imageio_ffmpeg
 import yt_dlp
 
 
 app = Flask(__name__)
 DOWNLOAD_DIR = Path(tempfile.gettempdir()) / "audioyt-downloads"
 DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def get_ffmpeg_path() -> str | None:
+    try:
+        return imageio_ffmpeg.get_ffmpeg_exe()
+    except RuntimeError:
+        return shutil.which("ffmpeg")
 
 
 def is_youtube_url(value: str) -> bool:
@@ -24,7 +34,7 @@ def is_youtube_url(value: str) -> bool:
 
 @app.get("/")
 def index():
-    return render_template("index.html", ffmpeg_available=shutil.which("ffmpeg") is not None)
+    return render_template("index.html", ffmpeg_available=get_ffmpeg_path() is not None)
 
 
 @app.post("/api/download")
@@ -34,8 +44,9 @@ def download_audio():
     if not is_youtube_url(url):
         return jsonify(error="Wklej poprawny adres filmu z YouTube."), 400
 
-    if shutil.which("ffmpeg") is None:
-        return jsonify(error="Brakuje FFmpeg. Zainstaluj go i dodaj do PATH, potem uruchom aplikację ponownie."), 500
+    ffmpeg_path = get_ffmpeg_path()
+    if ffmpeg_path is None:
+        return jsonify(error="Brakuje składnika FFmpeg. Uruchom ponownie gotową aplikację lub skontaktuj się z autorem."), 500
 
     output_template = str(DOWNLOAD_DIR / "%(title)s.%(ext)s")
     options = {
@@ -45,6 +56,7 @@ def download_audio():
         "quiet": True,
         "no_warnings": True,
         "restrictfilenames": True,
+        "ffmpeg_location": ffmpeg_path,
         "postprocessors": [
             {
                 "key": "FFmpegExtractAudio",
@@ -77,4 +89,5 @@ def download_audio():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    threading.Timer(1.2, lambda: webbrowser.open("http://127.0.0.1:5000")).start()
+    app.run(debug=False, port=5000)
