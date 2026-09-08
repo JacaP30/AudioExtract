@@ -14,7 +14,7 @@
       <header class="topbar">
         <a class="brand" href="/" aria-label="Audioyt - strona główna">
           <span class="brand-mark">A</span>
-          <span>audioyt</span>
+          <span>udioyt</span>
         </a>
         <span class="status"><span class="status-dot"></span> lokalnie i prywatnie</span>
       </header>
@@ -57,9 +57,24 @@
         </article>
       </section>
 
+      <section class="author" aria-labelledby="author-title">
+        <img
+          class="author-logo"
+          src="{{ url_for('static', filename='aiit-logo.png') }}"
+          alt="Logo AiIT z gradientem od niebieskiego do czerwonego i ikoną drzewa-obwodu"
+          width="220"
+          height="92"
+        >
+        <div class="author-copy">
+          <p class="eyebrow">O autorze</p>
+          <h2 id="author-title">Jacek Przybylak</h2>
+          <p>Audioyt  — lokalne narzędzie do wyciągania audio z YouTube, bez chmury, bez konta i bez zbędnego szumu. Cała praca odbywa się na Twoim komputerze.</p>
+        </div>
+      </section>
+
       <footer>
-        <span>Audioyt / 2026</span>
-        <span>Korzystaj tylko z materiałów, do których masz prawa.</span>
+        <span>Audioyt / 2026  · AiIT</span>
+        <span>KORZYSTAJ TYLKO Z MATERIAŁÓW, DO KTÓRYCH MASZ PRAWA.</span>
       </footer>
     </main>
     <script src="{{ url_for('static', filename='app.js') }}"></script>

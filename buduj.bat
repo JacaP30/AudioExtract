@@ -16,6 +16,10 @@ echo Instalowanie bibliotek aplikacji i PyInstaller...
 ".venv\Scripts\python.exe" -m pip install -r requirements.txt pyinstaller
 if errorlevel 1 goto :error
 
+echo Zamykanie uruchomionego Audioyt.exe...
+taskkill /IM Audioyt.exe /F >nul 2>&1
+ping -n 2 127.0.0.1 >nul
+
 echo Czyszczenie poprzedniego buildu...
 if exist build rmdir /s /q build
 if exist dist rmdir /s /q dist

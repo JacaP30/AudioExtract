@@ -36,7 +36,7 @@ FFmpeg jest dołączany przez pakiet `imageio-ffmpeg` podczas budowania, więc o
 2. Utwórz środowisko i zainstaluj zależności:
 
    ```powershell
-   py -m venv .venv
+   python -m venv .venv
    .\.venv\Scripts\Activate.ps1
    pip install -r requirements.txt
    ```
@@ -44,7 +44,7 @@ FFmpeg jest dołączany przez pakiet `imageio-ffmpeg` podczas budowania, więc o
 3. Uruchom aplikację:
 
    ```powershell
-   py app.py
+   python app.py
    ```
 
 4. Otwórz `http://127.0.0.1:5000`.
