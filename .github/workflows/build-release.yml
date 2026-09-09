@@ -16,13 +16,10 @@ jobs:
         include:
           - os: windows-latest
             artifact: Audioyt-windows
-            executable: dist/Audioyt.exe
           - os: macos-latest
             artifact: Audioyt-macos
-            executable: dist/Audioyt
           - os: ubuntu-latest
             artifact: Audioyt-linux
-            executable: dist/Audioyt
 
     steps:
       - name: Checkout
@@ -43,12 +40,22 @@ jobs:
           --add-data "static${{ runner.os == 'Windows' && ';' || ':' }}static"
           --collect-all imageio_ffmpeg app.py
 
-      - name: Make Linux/macOS executable runnable
-        if: runner.os != 'Windows'
-        run: chmod +x dist/Audioyt
+      - name: Package Windows
+        if: runner.os == 'Windows'
+        run: |
+          New-Item -ItemType Directory -Force -Path release | Out-Null
+          Copy-Item dist/Audioyt.exe release/Audioyt.exe
 
-      - name: Upload executable
+      - name: Package macOS app
+        if: runner.os == 'macOS'
+        run: python3 scripts/package-macos.py
+
+      - name: Package Linux launcher
+        if: runner.os == 'Linux'
+        run: python3 scripts/package-linux.py
+
+      - name: Upload package
         uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.artifact }}
-          path: ${{ matrix.executable }}
+          path: release/

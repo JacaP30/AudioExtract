@@ -26,5 +26,41 @@ echo "Budowanie Audioyt..."
   --add-data "static:static" \
   --collect-all imageio_ffmpeg app.py
 
-echo
-echo "Gotowe. Plik znajduje sie w: $(pwd)/dist/Audioyt"
+chmod +x dist/Audioyt
+
+if [ "$(uname -s)" = "Darwin" ]; then
+  mkdir -p dist/Audioyt.app/Contents/MacOS
+  mv dist/Audioyt dist/Audioyt.app/Contents/MacOS/Audioyt
+  cat > dist/Audioyt.app/Contents/Info.plist << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleExecutable</key>
+  <string>Audioyt</string>
+  <key>CFBundleIdentifier</key>
+  <string>com.aiit.audioyt</string>
+  <key>CFBundleName</key>
+  <string>Audioyt</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>CFBundleVersion</key>
+  <string>1.0</string>
+</dict>
+</plist>
+EOF
+  echo
+  echo "Gotowe. Aplikacja: $(pwd)/dist/Audioyt.app"
+else
+  mv dist/Audioyt dist/Audioyt.bin
+  cat > dist/Audioyt.sh << 'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")"
+chmod +x ./Audioyt.bin
+./Audioyt.bin
+EOF
+  chmod +x dist/Audioyt.sh
+  echo
+  echo "Gotowe. Uruchom: $(pwd)/dist/Audioyt.sh"
+fi

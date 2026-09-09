@@ -20,6 +20,11 @@ Po wyslaniu projektu do GitHub:
 2. Wybierz **Build Audioyt**.
 3. Kliknij **Run workflow**.
 4. Po zakonczeniu pobierz artefakty `Audioyt-windows`, `Audioyt-macos` i `Audioyt-linux`.
+5. Rozpakuj archiwum. W srodku sa pliki z rozszerzeniami, ktore system rozpoznaje:
+
+   - Windows: `Audioyt.exe` — uruchom podwojnym kliknieciem.
+   - macOS: `Audioyt.app` — uruchom podwojnym kliknieciem. Przy pierwszym starcie kliknij aplikacje prawym przyciskiem i wybierz **Otworz**.
+   - Linux: `Audioyt.sh` — uruchom podwojnym kliknieciem albo w terminalu: `chmod +x Audioyt.sh Audioyt.bin && ./Audioyt.sh`.
 
 ### Instalacja FFmpeg podczas budowania
 
@@ -27,13 +32,15 @@ FFmpeg jest dołączany przez pakiet `imageio-ffmpeg` podczas budowania, więc o
 
 ## Uruchomienie reczne
 
+Aplikacja korzysta ze środowiska wirtualnego w folderze `.venv`. Bez jego włączenia `python app.py` może użyć systemowego Pythona i zgłosić brak bibliotek.
+
 1. Zainstaluj Python 3.11+ oraz FFmpeg. Po instalacji sprawdź w PowerShell:
 
    ```powershell
    ffmpeg -version
    ```
 
-2. Utwórz środowisko i zainstaluj zależności:
+2. Utwórz środowisko `.venv` i zainstaluj zależności (wystarczy raz):
 
    ```powershell
    python -m venv .venv
@@ -41,12 +48,38 @@ FFmpeg jest dołączany przez pakiet `imageio-ffmpeg` podczas budowania, więc o
    pip install -r requirements.txt
    ```
 
-3. Uruchom aplikację:
+   Na macOS i Linux:
+
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+3. W każdym nowym terminalu najpierw włącz `.venv`, potem uruchom aplikację.
+
+   Windows (PowerShell):
 
    ```powershell
+   .\.venv\Scripts\Activate.ps1
    python app.py
    ```
 
+   macOS i Linux:
+
+   ```bash
+   source .venv/bin/activate
+   python app.py
+   ```
+
+   Bez aktywacji możesz też uruchomić Pythona bezpośrednio ze środowiska:
+
+   ```powershell
+   .\.venv\Scripts\python.exe app.py
+   ```
+
 4. Otwórz `http://127.0.0.1:5000`.
+
+Aktywne `.venv` poznasz po przedrostku `(.venv)` w wierszu poleceń. Aby je wyłączyć, wpisz `deactivate`.
 
 Aplikacja przetwarza jeden film naraz i usuwa tymczasowy plik z serwera po wysłaniu go do przeglądarki. Używaj jej wyłącznie z materiałami, do których masz prawo pobierania.

@@ -1,6 +1,7 @@
 from pathlib import Path
 import re
 import shutil
+import socket
 import tempfile
 import threading
 import webbrowser
@@ -11,6 +12,10 @@ import yt_dlp
 
 
 app = Flask(__name__)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
+app.jinja_env.auto_reload = True
+app.jinja_env.cache = None
 DOWNLOAD_DIR = Path(tempfile.gettempdir()) / "audioyt-downloads"
 DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -30,6 +35,17 @@ def is_youtube_url(value: str) -> bool:
             re.IGNORECASE,
         )
     )
+
+
+def port_is_busy(port: int) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        return sock.connect_ex(("127.0.0.1", port)) == 0
+
+
+@app.after_request
+def disable_cache(response):
+    response.headers["Cache-Control"] = "no-store, max-age=0"
+    return response
 
 
 @app.get("/")
@@ -89,5 +105,12 @@ def download_audio():
 
 
 if __name__ == "__main__":
+    if port_is_busy(5000):
+        raise SystemExit(
+            "Port 5000 jest juz zajety przez inna instancje Audioyt. "
+            "Zamknij poprzednie okno z python app.py (Ctrl+C) i uruchom ponownie."
+        )
+
+    print(f"Szablony: {Path(app.root_path) / 'templates' / 'index.html'}")
     threading.Timer(1.2, lambda: webbrowser.open("http://127.0.0.1:5000")).start()
     app.run(debug=False, port=5000)
