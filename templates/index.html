@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Audioyt | YouTube do MP3</title>
+    <title>Audioyt</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -56,26 +58,6 @@
           <p>Plik MP3 trafi bezpośrednio do folderu Pobrane.</p>
         </article>
       </section>
-
-      <section class="author" aria-labelledby="author-title">
-        <img
-          class="author-logo"
-          src="{{ url_for('static', filename='aiit-logo.png') }}"
-          alt="Logo AiIT z gradientem od niebieskiego do czerwonego i ikoną drzewa-obwodu"
-          width="220"
-          height="92"
-        >
-        <div class="author-copy">
-          <p class="eyebrow">O autorze</p>
-          <h2 id="author-title">Jacek Przybylak</h2>
-          <p>Audioyt  — lokalne narzędzie do wyciągania audio z YouTube, bez chmury, bez konta i bez zbędnego szumu. Cała praca odbywa się na Twoim komputerze.</p>
-        </div>
-      </section> 
-
-      <footer>
-        <span>Audioyt / 2026  · AiIT</span>
-        <span>KORZYSTAJ TYLKO Z MATERIAŁÓW, DO KTÓRYCH MASZ PRAWA.</span>
-      </footer>
     </main>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
   </body>
