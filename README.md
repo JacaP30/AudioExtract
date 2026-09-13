@@ -6,6 +6,23 @@ Możesz wkleić adres http/https albo wybrać plik wideo/audio z dysku. Wolny da
 
 Używaj wyłącznie z materiałami, do których masz prawo. AudioExtract nie jest powiązane z żadną platformą wideo.
 
+## Pobieranie gotowej aplikacji
+
+Najnowsza wersja (strona z plikami):  
+https://github.com/JacaP30/AudioExtract/releases/latest
+
+Bezpośrednie pobrania (v1.0.0):
+
+- Windows: https://github.com/JacaP30/AudioExtract/releases/download/v1.0.0/AudioExtract-windows.zip
+- macOS: https://github.com/JacaP30/AudioExtract/releases/download/v1.0.0/AudioExtract-macos.zip
+- Linux: https://github.com/JacaP30/AudioExtract/releases/download/v1.0.0/AudioExtract-linux.zip
+
+Po rozpakowaniu:
+
+- Windows: uruchom `AudioExtract.exe`
+- macOS: uruchom `AudioExtract.app` (przy pierwszym starcie: prawy przycisk → **Otwórz**)
+- Linux: `chmod +x AudioExtract.sh AudioExtract.bin && ./AudioExtract.sh`
+
 ## Samodzielna wersja dla laika
 
 Najwygodniejsza wersja to pojedynczy plik aplikacji. Odbiorca nie musi instalować Pythona, bibliotek ani FFmpeg.
