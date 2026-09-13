@@ -1,4 +1,4 @@
-name: Build Audioyt
+name: Build AudioExtract
 
 on:
   workflow_dispatch:
@@ -15,11 +15,11 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            artifact: Audioyt-windows
+            artifact: AudioExtract-windows
           - os: macos-latest
-            artifact: Audioyt-macos
+            artifact: AudioExtract-macos
           - os: ubuntu-latest
-            artifact: Audioyt-linux
+            artifact: AudioExtract-linux
 
     steps:
       - name: Checkout
@@ -35,16 +35,18 @@ jobs:
 
       - name: Build executable
         run: >-
-          pyinstaller --noconfirm --clean --onefile --console --name Audioyt
+          pyinstaller --noconfirm --clean --onefile --console --name AudioExtract
           --add-data "templates${{ runner.os == 'Windows' && ';' || ':' }}templates"
           --add-data "static${{ runner.os == 'Windows' && ';' || ':' }}static"
+          --add-data "licenses${{ runner.os == 'Windows' && ';' || ':' }}licenses"
+          --add-data "LICENSE${{ runner.os == 'Windows' && ';' || ':' }}."
           --collect-all imageio_ffmpeg app.py
 
       - name: Package Windows
         if: runner.os == 'Windows'
         run: |
           New-Item -ItemType Directory -Force -Path release | Out-Null
-          Copy-Item dist/Audioyt.exe release/Audioyt.exe
+          Copy-Item dist/AudioExtract.exe release/AudioExtract.exe
 
       - name: Package macOS app
         if: runner.os == 'macOS'

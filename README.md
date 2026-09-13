@@ -1,36 +1,42 @@
-# Audioyt
+# AudioExtract
 
-Lokalna aplikacja Flask do pobierania audio z pojedynczego filmu YouTube i konwersji do MP3.
+Lokalne narzędzie do wyciągania audio z własnych nagrań — wykładów, konferencji, rekolekcji i podobnych materiałów, do których masz prawa. Działa na Twoim komputerze: bez chmury, bez konta i bez zbierania danych. Wynik to plik MP3 192 kbps.
+
+Możesz wkleić adres http/https albo wybrać plik wideo/audio z dysku. Wolny datek (Buycoffee) jest opcjonalny.
+
+Używaj wyłącznie z materiałami, do których masz prawo. AudioExtract nie jest powiązane z żadną platformą wideo.
 
 ## Samodzielna wersja dla laika
 
-Najwygodniejsza wersja to pojedynczy plik aplikacji. Odbiorca nie musi instalowac Pythona, bibliotek ani FFmpeg.
+Najwygodniejsza wersja to pojedynczy plik aplikacji. Odbiorca nie musi instalować Pythona, bibliotek ani FFmpeg.
 
-Na Windows uruchom `buduj.bat`, a na macOS/Linux uruchom `buduj.sh`. Gotowy plik pojawi sie w folderze `dist`. Wyslij odbiorcy tylko plik z tego folderu. Po uruchomieniu aplikacja sama otworzy przegladarke i uruchomi wlasne okno terminala w tle. Terminal zamknie sie automatycznie, gdy aplikacja zostanie zakonczona.
+Na Windows uruchom `buduj.bat`, a na macOS/Linux uruchom `buduj.sh`. Gotowy plik pojawi się w folderze `dist`. Wyślij odbiorcy tylko plik z tego folderu. Po uruchomieniu aplikacja sama otworzy przeglądarkę.
 
-PyInstaller buduje aplikacje dla systemu, na ktorym jest uruchomiony. Wersje Windows, macOS i Linux trzeba zbudowac osobno na odpowiednich systemach. Na macOS rezultat moze byc pojedynczym plikiem `Audioyt` albo aplikacja `.app`, zależnie od sposobu dystrybucji.
+PyInstaller buduje aplikację dla systemu, na którym jest uruchomiony. Wersje Windows, macOS i Linux trzeba zbudować osobno na odpowiednich systemach. Na macOS rezultat może być pojedynczym plikiem `AudioExtract` albo aplikacją `.app`.
 
 ### Budowanie wszystkich wersji z Windows
 
-Nie da sie natywnie zbudowac wersji macOS na Windows. W repozytorium znajduje sie workflow `.github/workflows/build-release.yml`, ktory robi to automatycznie na maszynach GitHub dla Windows, macOS i Linux.
+Nie da się natywnie zbudować wersji macOS na Windows. W repozytorium znajduje się workflow `.github/workflows/build-release.yml`, który robi to automatycznie na maszynach GitHub dla Windows, macOS i Linux.
 
-Po wyslaniu projektu do GitHub:
+Po wysłaniu projektu do GitHub:
 
-1. Otworz zakladke **Actions**.
-2. Wybierz **Build Audioyt**.
+1. Otwórz zakładkę **Actions**.
+2. Wybierz **Build AudioExtract**.
 3. Kliknij **Run workflow**.
-4. Po zakonczeniu pobierz artefakty `Audioyt-windows`, `Audioyt-macos` i `Audioyt-linux`.
-5. Rozpakuj archiwum. W srodku sa pliki z rozszerzeniami, ktore system rozpoznaje:
+4. Po zakończeniu pobierz artefakty `AudioExtract-windows`, `AudioExtract-macos` i `AudioExtract-linux`.
+5. Rozpakuj archiwum. W środku są pliki z rozszerzeniami, które system rozpoznaje:
 
-   - Windows: `Audioyt.exe` — uruchom podwojnym kliknieciem.
-   - macOS: `Audioyt.app` — uruchom podwojnym kliknieciem. Przy pierwszym starcie kliknij aplikacje prawym przyciskiem i wybierz **Otworz**.
-   - Linux: `Audioyt.sh` — uruchom podwojnym kliknieciem albo w terminalu: `chmod +x Audioyt.sh Audioyt.bin && ./Audioyt.sh`.
+   - Windows: `AudioExtract.exe` — uruchom podwójnym kliknięciem.
+   - macOS: `AudioExtract.app` — uruchom podwójnym kliknięciem. Przy pierwszym starcie kliknij aplikację prawym przyciskiem i wybierz **Otwórz**.
+   - Linux: `AudioExtract.sh` — uruchom podwójnym kliknięciem albo w terminalu: `chmod +x AudioExtract.sh AudioExtract.bin && ./AudioExtract.sh`.
 
 ### Instalacja FFmpeg podczas budowania
 
 FFmpeg jest dołączany przez pakiet `imageio-ffmpeg` podczas budowania, więc odbiorca nie musi instalować go osobno. Na macOS/Linux nadaj skryptowi prawo uruchamiania poleceniem `chmod +x buduj.sh`.
 
-## Uruchomienie reczne
+Licencje zależności są w folderze `licenses`. Licencja AudioExtract: MIT (`LICENSE`).
+
+## Uruchomienie ręczne
 
 Aplikacja korzysta ze środowiska wirtualnego w folderze `.venv`. Bez jego włączenia `python app.py` może użyć systemowego Pythona i zgłosić brak bibliotek.
 
@@ -82,4 +88,4 @@ Aplikacja korzysta ze środowiska wirtualnego w folderze `.venv`. Bez jego włą
 
 Aktywne `.venv` poznasz po przedrostku `(.venv)` w wierszu poleceń. Aby je wyłączyć, wpisz `deactivate`.
 
-Aplikacja przetwarza jeden film naraz i usuwa tymczasowy plik z serwera po wysłaniu go do przeglądarki. Używaj jej wyłącznie z materiałami, do których masz prawo pobierania.
+Aplikacja przetwarza jeden materiał naraz i usuwa tymczasowy plik po wysłaniu go do przeglądarki.

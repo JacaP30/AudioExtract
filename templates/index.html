@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Audioyt</title>
+    <title>AudioExtract</title>
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,27 +14,33 @@
   <body>
     <main class="shell">
       <header class="topbar">
-        <a class="brand" href="/" aria-label="Audioyt - strona główna">
+        <a class="brand" href="/" aria-label="AudioExtract - strona główna">
           <span class="brand-mark">A</span>
-          <span class="brand-name">udioyt</span>
+          <span class="brand-name">udioExtract</span>
         </a>
         <span class="status"><span class="status-dot"></span> lokalnie i prywatnie</span>
       </header>
 
       <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">YouTube <span>/</span> audio</p>
+        <p class="eyebrow"><span class="hero-kicker">wideo / audio</span></p>
         <h1 id="page-title">Wyciągnij dźwięk.<br><em>Zostaw obraz.</em></h1>
-        <p class="intro">Wklej adres filmu, a dostaniesz czysty plik MP3 w jakości 192 kbps.</p>
+        <p class="intro">Narzędzie do własnych nagrań: wykładów, konferencji, rekolekcji i podobnych materiałów, do których masz prawa. Wklej adres albo wybierz plik z komputera — dostaniesz MP3 192 kbps. Wszystko zostaje na Twoim komputerze.</p>
 
-        <form id="download-form" class="download-form">
-          <label for="url">Adres filmu</label>
+        <form id="download-form" class="download-form" enctype="multipart/form-data">
+          <label for="url">Adres nagrania</label>
           <div class="input-row">
-            <input id="url" name="url" type="url" placeholder="https://youtube.com/watch?v=..." autocomplete="url" required>
-            <button type="submit"><span class="button-label">Pobierz audio</span><span class="button-arrow">↗</span></button>
+            <input id="url" name="url" type="url" placeholder="https://..." autocomplete="url">
+          </div>
+          <label class="file-label" for="file">Albo plik z komputera</label>
+          <div class="input-row file-row">
+            <input id="file" name="file" class="file-input" type="file" accept="audio/*,video/*,.mp4,.mkv,.webm,.mov,.avi,.m4a,.wav,.ogg,.mp3,.flac,.aac">
+          </div>
+          <div class="form-actions">
+            <button type="submit" disabled><span class="button-label">Pobierz audio</span><span class="button-arrow">↗</span></button>
           </div>
           <div class="form-meta">
             <span>MP3 · 192 kbps</span>
-            <span>Jeden film na raz</span>
+            <span>Jeden materiał na raz</span>
           </div>
         </form>
 
@@ -45,12 +51,12 @@
         <article>
           <span class="note-number">01</span>
           <h2>Wklej</h2>
-          <p>Skopiuj adres filmu z YouTube i wklej go powyżej.</p>
+          <p>Wklej adres nagrania albo wybierz plik z dysku.</p>
         </article>
         <article>
           <span class="note-number">02</span>
           <h2>Poczekaj</h2>
-          <p>Audio zostanie pobrane i przekonwertowane automatycznie.</p>
+          <p>Audio zostanie wyciągnięte i przekonwertowane automatycznie.</p>
         </article>
         <article>
           <span class="note-number">03</span>
@@ -58,6 +64,36 @@
           <p>Plik MP3 trafi bezpośrednio do folderu Pobrane.</p>
         </article>
       </section>
+
+      <section class="author" aria-labelledby="author-title">
+        <img
+          class="author-logo"
+          src="{{ url_for('static', filename='aiit-logo.png') }}"
+          alt="Logo AiIT z gradientem od niebieskiego do czerwonego i ikoną drzewa-obwodu"
+          width="220"
+          height="92"
+        >
+        <div class="author-copy">
+          <p class="eyebrow">O autorze</p>
+          <h2 id="author-title">Jacek Przybylak</h2>
+          <p>Lubię budować narzędzia ułatwiające życie a to jedno z nich. <br>AudioExtract — lokalne narzędzie do wyciągania audio z nagrań, bez chmury, bez konta, bez subskrypcji i bez zbędnego szumu. Cała praca odbywa się na Twoim komputerze. Przydatne studentom i każdemu, kto chce zostawić sobie sam dźwięk. Jeśli Ci się spodobało, możesz mnie wesprzeć kawą na Buycoffee.</p>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-meta">
+          <span>AudioExtract / 2026  · AiIT · <a href="{{ url_for('licenses_page') }}">Licencje</a></span>
+          <span>KORZYSTAJ TYLKO Z MATERIAŁÓW, DO KTÓRYCH MASZ PRAWA.</span>
+        </div>
+        <div class="buycoffee">
+          <img
+            src="{{ url_for('static', filename='QR_buycoffee.png') }}"
+            alt="Kod QR Buycoffee: Wchłonę każdą kawę"
+            width="220"
+            height="279"
+          >
+        </div>
+      </footer>
     </main>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
   </body>

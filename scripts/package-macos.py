@@ -1,12 +1,12 @@
 from pathlib import Path
 
 root = Path("release")
-app = root / "Audioyt.app" / "Contents"
+app = root / "AudioExtract.app" / "Contents"
 macos = app / "MacOS"
 macos.mkdir(parents=True, exist_ok=True)
 
-source = Path("dist") / "Audioyt"
-target = macos / "Audioyt"
+source = Path("dist") / "AudioExtract"
+target = macos / "AudioExtract"
 source.replace(target)
 target.chmod(0o755)
 
@@ -16,13 +16,13 @@ target.chmod(0o755)
 <plist version="1.0">
 <dict>
   <key>CFBundleExecutable</key>
-  <string>Audioyt</string>
+  <string>AudioExtract</string>
   <key>CFBundleIdentifier</key>
-  <string>com.aiit.audioyt</string>
+  <string>com.aiit.audioextract</string>
   <key>CFBundleName</key>
-  <string>Audioyt</string>
+  <string>AudioExtract</string>
   <key>CFBundleDisplayName</key>
-  <string>Audioyt</string>
+  <string>AudioExtract</string>
   <key>CFBundlePackageType</key>
   <string>APPL</string>
   <key>CFBundleVersion</key>

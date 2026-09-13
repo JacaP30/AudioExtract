@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Licencje | AudioExtract</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <main class="shell license-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="AudioExtract - strona główna">
+          <span class="brand-mark">A</span>
+          <span class="brand-name">udioExtract</span>
+        </a>
+        <a class="status" href="/">wróć do narzędzia</a>
+      </header>
+
+      <article class="license-copy">
+        <p class="eyebrow">użycie <span>/</span> licencje</p>
+        <h1>Na własny komputer.<br><em>Na własne ryzyko.</em></h1>
+        <p>AudioExtract działa wyłącznie lokalnie. Nie zakłada kont, nie wysyła nagrań do chmury i nie zbiera danych. Wolny datek (Buycoffee) jest opcjonalny.</p>
+        <p>Korzystaj tylko z materiałów, do których masz prawa: własne nagrania wykładów, konferencji, rekolekcji i podobnych. Aplikacja jest przekazywana dalej jako narzędzie, bez gwarancji działania.</p>
+        <p>AudioExtract nie jest powiązane z żadną platformą wideo. Licencja samej aplikacji: MIT (Jacek Przybylak / AiIT, 2026). Pełne teksty leżą w folderze <code>licenses</code> źródła i w paczce budowanej przez PyInstaller.</p>
+
+        <h2>Oprogramowanie zewnętrzne</h2>
+        <ul>
+          <li>Flask — BSD-3-Clause</li>
+          <li>yt-dlp — Unlicense</li>
+          <li>FFmpeg (przez imageio-ffmpeg) — LGPL 2.1 lub nowsza, zależnie od dołączonej kompilacji</li>
+        </ul>
+      </article>
+    </main>
+  </body>
+</html>

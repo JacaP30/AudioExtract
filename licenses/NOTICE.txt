@@ -1,0 +1,12 @@
+AudioExtract bundles third-party software. Use AudioExtract only with recordings
+and materials you have the right to process. The app runs locally, creates no
+user accounts, and does not collect personal data. Donations (Buycoffee) are
+optional.
+
+This folder contains license texts for bundled components:
+
+- FLASK-BSD.txt — Flask (BSD-3-Clause)
+- YT-DLP-UNLICENSE.txt — yt-dlp (Unlicense)
+- FFMPEG-LGPL.txt — FFmpeg, typically LGPL when shipped via imageio-ffmpeg
+
+AudioExtract itself is licensed under the MIT License (see ../LICENSE).

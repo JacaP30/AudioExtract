@@ -1,0 +1,14 @@
+FFmpeg is used by AudioExtract through the imageio-ffmpeg package.
+
+FFmpeg is typically distributed under the GNU Lesser General Public
+License (LGPL) version 2.1 or later. Some FFmpeg builds may include
+GPL components; see https://ffmpeg.org/legal.html and the binary
+shipped with imageio-ffmpeg.
+
+The full LGPL 2.1 text:
+https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+
+Corresponding source for FFmpeg:
+https://ffmpeg.org/download.html
+
+Copyright (c) the FFmpeg developers.
