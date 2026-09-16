@@ -18,7 +18,9 @@ jobs:
             artifact: AudioExtract-windows
           - os: macos-latest
             artifact: AudioExtract-macos
-          - os: ubuntu-latest
+          # ubuntu-22.04 = glibc 2.35 — działa też na nowszych Linuxach.
+          # ubuntu-latest (24.04) wymaga glibc 2.38+ i pada na Ubuntu 22.04 / Debian 12.
+          - os: ubuntu-22.04
             artifact: AudioExtract-linux
 
     steps:

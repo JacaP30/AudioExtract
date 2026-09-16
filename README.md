@@ -21,7 +21,8 @@ Po rozpakowaniu:
 
 - Windows: uruchom `AudioExtract.exe`
 - macOS: uruchom `AudioExtract.app` (przy pierwszym starcie: prawy przycisk → **Otwórz**)
-- Linux: `chmod +x AudioExtract.sh AudioExtract.bin && ./AudioExtract.sh`
+- Linux: `chmod +x AudioExtract.sh AudioExtract.bin && ./AudioExtract.sh`  
+  Wymaga glibc ≥ 2.35 (np. Ubuntu 22.04+, Debian 12+, Fedora nowsze). Build CI jest na Ubuntu 22.04, żeby uniknąć błędu `GLIBC_2.38 not found` na starszych dystrybucjach.
 
 ## Samodzielna wersja dla laika
 
