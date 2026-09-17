@@ -21,7 +21,7 @@ Po rozpakowaniu:
 
 - Windows: uruchom `AudioExtract.exe`
 - macOS: uruchom `AudioExtract.app` (przy pierwszym starcie: prawy przycisk → **Otwórz**)
-- Linux: `chmod +x AudioExtract.sh AudioExtract.bin && ./AudioExtract.sh`  
+- Linux: `chmod +x AudioExtract && ./AudioExtract`  
   Wymaga glibc ≥ 2.35 (np. Ubuntu 22.04+, Debian 12+, Fedora nowsze). Build CI jest na Ubuntu 22.04, żeby uniknąć błędu `GLIBC_2.38 not found` na starszych dystrybucjach.
 
 ## Samodzielna wersja dla laika
@@ -46,7 +46,7 @@ Po wysłaniu projektu do GitHub:
 
    - Windows: `AudioExtract.exe` — uruchom podwójnym kliknięciem.
    - macOS: `AudioExtract.app` — uruchom podwójnym kliknięciem. Przy pierwszym starcie kliknij aplikację prawym przyciskiem i wybierz **Otwórz**.
-   - Linux: `AudioExtract.sh` — uruchom podwójnym kliknięciem albo w terminalu: `chmod +x AudioExtract.sh AudioExtract.bin && ./AudioExtract.sh`.
+   - Linux: `AudioExtract` — w terminalu: `chmod +x AudioExtract && ./AudioExtract`.
 
 ### Instalacja FFmpeg podczas budowania
 

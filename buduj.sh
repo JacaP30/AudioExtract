@@ -54,15 +54,6 @@ EOF
   echo
   echo "Gotowe. Aplikacja: $(pwd)/dist/AudioExtract.app"
 else
-  mv dist/AudioExtract dist/AudioExtract.bin
-  cat > dist/AudioExtract.sh << 'EOF'
-#!/usr/bin/env bash
-set -euo pipefail
-cd "$(dirname "$0")"
-chmod +x ./AudioExtract.bin
-./AudioExtract.bin
-EOF
-  chmod +x dist/AudioExtract.sh
   echo
-  echo "Gotowe. Uruchom: $(pwd)/dist/AudioExtract.sh"
+  echo "Gotowe. Uruchom: chmod +x dist/AudioExtract && ./dist/AudioExtract"
 fi
