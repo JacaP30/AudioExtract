@@ -49,17 +49,25 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path release | Out-Null
           Copy-Item dist/AudioExtract.exe release/AudioExtract.exe
+          Compress-Archive -Path release/AudioExtract.exe -DestinationPath release/AudioExtract-windows.zip -Force
 
       - name: Package macOS app
         if: runner.os == 'macOS'
         run: python3 scripts/package-macos.py
 
-      - name: Package Linux launcher
+      - name: Package Linux
         if: runner.os == 'Linux'
-        run: python3 scripts/package-linux.py
+        run: |
+          python3 scripts/package-linux.py
+          (cd release && zip -9 AudioExtract-linux.zip AudioExtract CZYTAJ.txt)
 
       - name: Upload package
         uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.artifact }}
-          path: release/
+          path: |
+            release/*.zip
+            release/AudioExtract.exe
+            release/AudioExtract.app
+            release/AudioExtract
+            release/CZYTAJ.txt

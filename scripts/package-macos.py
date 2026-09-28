@@ -1,7 +1,9 @@
 from pathlib import Path
+import subprocess
 
 root = Path("release")
-app = root / "AudioExtract.app" / "Contents"
+app_bundle = root / "AudioExtract.app"
+app = app_bundle / "Contents"
 macos = app / "MacOS"
 macos.mkdir(parents=True, exist_ok=True)
 
@@ -37,4 +39,28 @@ target.chmod(0o755)
 </plist>
 """,
     encoding="utf-8",
+)
+
+# Ad-hoc signature — bez tego macOS (zwłaszcza Apple Silicon) często
+# pokazuje tylko "The application can't be opened".
+subprocess.run(
+    ["codesign", "--force", "--deep", "--sign", "-", str(app_bundle)],
+    check=True,
+)
+
+# Zip tworzony na macOS zachowuje bit +x (Compress-Archive na Windows go gubi).
+zip_path = root / "AudioExtract-macos.zip"
+if zip_path.exists():
+    zip_path.unlink()
+subprocess.run(
+    [
+        "ditto",
+        "-c",
+        "-k",
+        "--sequesterRsrc",
+        "--keepParent",
+        str(app_bundle),
+        str(zip_path),
+    ],
+    check=True,
 )

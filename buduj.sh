@@ -33,6 +33,7 @@ chmod +x dist/AudioExtract
 if [ "$(uname -s)" = "Darwin" ]; then
   mkdir -p dist/AudioExtract.app/Contents/MacOS
   mv dist/AudioExtract dist/AudioExtract.app/Contents/MacOS/AudioExtract
+  chmod +x dist/AudioExtract.app/Contents/MacOS/AudioExtract
   cat > dist/AudioExtract.app/Contents/Info.plist << 'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -48,11 +49,15 @@ if [ "$(uname -s)" = "Darwin" ]; then
   <string>APPL</string>
   <key>CFBundleVersion</key>
   <string>1.0</string>
+  <key>LSMinimumSystemVersion</key>
+  <string>11.0</string>
 </dict>
 </plist>
 EOF
+  codesign --force --deep --sign - dist/AudioExtract.app
   echo
   echo "Gotowe. Aplikacja: $(pwd)/dist/AudioExtract.app"
+  echo "Jesli macOS blokuje: xattr -cr dist/AudioExtract.app && open dist/AudioExtract.app"
 else
   echo
   echo "Gotowe. Uruchom: chmod +x dist/AudioExtract && ./dist/AudioExtract"

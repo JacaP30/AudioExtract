@@ -20,7 +20,15 @@ Bezpośrednie pobrania (v1.0.0):
 Po rozpakowaniu:
 
 - Windows: uruchom `AudioExtract.exe`
-- macOS: uruchom `AudioExtract.app` (przy pierwszym starcie: prawy przycisk → **Otwórz**)
+- macOS: rozpakuj zip, potem w Terminalu (Gatekeeper blokuje niepodpisane aplikacje z internetu):
+
+  ```bash
+  xattr -cr ~/Downloads/AudioExtract.app
+  open ~/Downloads/AudioExtract.app
+  ```
+
+  Albo: kliknij `AudioExtract.app` **prawym przyciskiem** → **Otwórz** → **Otwórz**.
+  Build jest na Apple Silicon (`macos-latest`). Na Intelu potrzebny Rosetta.
 - Linux: `chmod +x AudioExtract && ./AudioExtract`  
   Wymaga glibc ≥ 2.35 (np. Ubuntu 22.04+, Debian 12+, Fedora nowsze). Build CI jest na Ubuntu 22.04, żeby uniknąć błędu `GLIBC_2.38 not found` na starszych dystrybucjach.
 
@@ -45,7 +53,7 @@ Po wysłaniu projektu do GitHub:
 5. Rozpakuj archiwum. W środku są pliki z rozszerzeniami, które system rozpoznaje:
 
    - Windows: `AudioExtract.exe` — uruchom podwójnym kliknięciem.
-   - macOS: `AudioExtract.app` — uruchom podwójnym kliknięciem. Przy pierwszym starcie kliknij aplikację prawym przyciskiem i wybierz **Otwórz**.
+   - macOS: `AudioExtract.app` — przy pierwszym starcie: prawy przycisk → **Otwórz**, albo `xattr -cr AudioExtract.app && open AudioExtract.app`.
    - Linux: `AudioExtract` — w terminalu: `chmod +x AudioExtract && ./AudioExtract`.
 
 ### Instalacja FFmpeg podczas budowania
